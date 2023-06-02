@@ -1,1 +1,1 @@
-# react-native-movie-wmdd-4998-Jungho-Lee
+# react-native-movie-app-wmdd-4998-Jungho-Lee
