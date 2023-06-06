@@ -17,7 +17,8 @@ const getMovies = async (type) => {
 
     const response = await movieAxios.get(url, { params });
 
-    console.log("RESPONSE", response.data.results);
+    // console.log("RESPONSE", response.data.results);
+    return response;
   } catch (error) {
     throw error;
   }
