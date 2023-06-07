@@ -1,11 +1,7 @@
-import { Text, View } from "native-base";
+import ShowPageContainer from "../containers/ShowPageContainer";
 
-const ShowPage = () => {
-  return (
-    <View>
-      <Text>More Detail</Text>
-    </View>
-  );
+const ShowPage = ({ route }) => {
+  return <ShowPageContainer route={route} />;
 };
 
 export default ShowPage;

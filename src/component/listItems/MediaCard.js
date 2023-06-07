@@ -3,9 +3,8 @@ import { Box, Button, Heading, Image, Text, VStack } from "native-base";
 import { IMAGE_PREFIX } from "../../config/api_config";
 
 const MediaCard = (props) => {
-  const { id, image, title, popularity, releaseDate } = props;
+  const { id, image, title, popularity, releaseDate, type } = props;
   const navigation = useNavigation();
-  console.log("props", props);
   return (
     <Box>
       <VStack direction={"row"} space={1}>
@@ -24,7 +23,7 @@ const MediaCard = (props) => {
             <Box p={2}>
               <Button
                 onPress={() => {
-                  navigation.navigate("detail", { id });
+                  navigation.navigate("detail", { id, type, title });
                 }}
               >
                 More Details

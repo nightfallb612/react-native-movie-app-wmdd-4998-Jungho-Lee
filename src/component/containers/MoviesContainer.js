@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  Container,
-  Select,
-  Box,
-  Center,
-  CheckIcon,
-} from "native-base";
+import { Container, Select, Box, Center, CheckIcon } from "native-base";
 import { useEffect, useState } from "react";
 import { getMovies } from "../../services/getMoviesService";
 import Loading from "../layout/Loading";
@@ -61,7 +53,7 @@ const MoviesContainer = () => {
           </Select>
         </Box>
       </Center>
-      {isLoading ? <Loading /> : <MediaList medias={movies} />}
+      {isLoading ? <Loading /> : <MediaList medias={movies} type="movie" />}
     </Container>
   );
 };
