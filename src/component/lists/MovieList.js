@@ -1,7 +1,7 @@
 import { FlatList } from "native-base";
 import MediaCard from "../listItems/MediaCard";
 
-const MediaList = (props) => {
+const MovieList = (props) => {
   const { medias, type } = props;
   return (
     <FlatList
@@ -20,4 +20,4 @@ const MediaList = (props) => {
   );
 };
 
-export default MediaList;
+export default MovieList;

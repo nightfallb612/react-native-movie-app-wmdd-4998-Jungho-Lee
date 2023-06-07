@@ -5,12 +5,10 @@ import { IMAGE_PREFIX } from "../../config/api_config";
 import Loading from "../layout/Loading";
 
 const ShowPageContainer = ({ route }) => {
-  const { id, type } = route.params;
+  const { id, title, type } = route.params;
 
   const [isLoading, setIsLoading] = useState(false);
   const [videoDetail, setVideoDetail] = useState("");
-
-  console.group("route.params", route.params);
 
   const fetchVideo = (id, type) => {
     setIsLoading(true);
@@ -19,7 +17,6 @@ const ShowPageContainer = ({ route }) => {
       (video) => {
         setVideoDetail(video.data);
         setIsLoading(false);
-        console.log("videoDetail:", video.data.poster_path);
       },
       (error) => {
         alert("Error", `Something went wrong! ${error}`);
@@ -39,7 +36,7 @@ const ShowPageContainer = ({ route }) => {
         <VStack space={4} paddingX={8}>
           <Center>
             <Heading marginY={8} size={"xl"}>
-              {videoDetail.original_title}
+              {title}
             </Heading>
             <Box m={1}>
               <Image
