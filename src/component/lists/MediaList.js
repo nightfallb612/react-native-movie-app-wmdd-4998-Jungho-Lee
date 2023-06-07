@@ -3,7 +3,6 @@ import MediaCard from "../listItems/MediaCard";
 
 const MediaList = (props) => {
   const { medias } = props;
-  //   console.log("medias", medias);
   return (
     <FlatList
       data={medias}

@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Box, Button, Heading, Image, Text, VStack } from "native-base";
+import { IMAGE_PREFIX } from "../../config/api_config";
 
 const MediaCard = (props) => {
   const { id, image, title, popularity, releaseDate } = props;
@@ -11,7 +12,7 @@ const MediaCard = (props) => {
         <Box>
           <Image
             alt="error"
-            source={{ uri: `https://image.tmdb.org/t/p/w500${image}` }}
+            source={{ uri: `${IMAGE_PREFIX}${image}` }}
             size="xl"
           />
         </Box>

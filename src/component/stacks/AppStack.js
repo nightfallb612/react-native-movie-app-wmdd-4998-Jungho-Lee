@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import MoviesContainer from "../containers/MoviesContainer";
 import SearchContainer from "../containers/SearchContainer";
 import TVShowContainer from "../containers/TVShowContainer";
-import MovieDetail from "../screens/MovieDetail";
+import ShowPage from "../screens/ShowPage";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -62,7 +62,7 @@ const AppStack = () => (
           },
         }}
       />
-      <Stack.Screen name="detail" component={MovieDetail} />
+      <Stack.Screen name="detail" component={ShowPage} />
     </Stack.Navigator>
   </NavigationContainer>
 );
