@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getMovies } from "../../services/getMoviesService";
 import Loading from "../layout/Loading";
 import MovieList from "../lists/MovieList";
+import { SELECT_BG } from "../../utils/colors";
 
 const MoviesContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,18 +33,18 @@ const MoviesContainer = () => {
   };
 
   return (
-    <Container>
+    <Container maxWidth={"100%"}>
       <Center width="full">
         <Box>
           <Select
             selectedValue={category}
-            minWidth="200"
+            minWidth="70%"
             accessibilityLabel="Select Category"
             _selectedItem={{
-              bg: "teal.600",
+              bg: SELECT_BG,
               endIcon: <CheckIcon size="5" />,
             }}
-            mt={1}
+            my={6}
             onValueChange={(itemValue) => handleCategoryChange(itemValue)}
           >
             <Select.Item label="Now Playing" value="now_playing" />
@@ -52,8 +53,8 @@ const MoviesContainer = () => {
             <Select.Item label="Upcoming" value="upcoming" />
           </Select>
         </Box>
+        {isLoading ? <Loading /> : <MovieList medias={movies} type="movie" />}
       </Center>
-      {isLoading ? <Loading /> : <MovieList medias={movies} type="movie" />}
     </Container>
   );
 };

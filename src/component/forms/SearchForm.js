@@ -10,15 +10,25 @@ import {
   VStack,
 } from "native-base";
 import { useState } from "react";
+import { SELECT_BG } from "../../utils/colors";
 
 const SearchForm = (props) => {
   const { onSubmit } = props;
   const [type, setType] = useState("movie");
   const [inputValue, setInputValue] = useState("");
+  const [isInputError, setIsInputError] = useState(false);
 
+  const onPressHandler = () => {
+    if (inputValue.trim() === "") {
+      setIsInputError(true);
+      onSubmit(type, inputValue, true);
+    } else {
+      onSubmit(type, inputValue, isInputError);
+    }
+  };
   return (
-    <VStack space={2} width="100%" marginX={2} py={5}>
-      <FormControl isRequired>
+    <VStack space={2} marginX={2} py={5}>
+      <FormControl isRequired isInvalid={isInputError}>
         <FormControl.Label fontSize={"sm"}>
           Search Movie/TV Show Name
         </FormControl.Label>
@@ -26,7 +36,7 @@ const SearchForm = (props) => {
           placeholder="i.e. James Bond, CSI"
           variant={"filled"}
           bg={"gray.200"}
-          width={"100%"}
+          // width={"100%"}
           InputLeftElement={
             <Icon
               size={5}
@@ -36,6 +46,7 @@ const SearchForm = (props) => {
             />
           }
           onChangeText={(value) => {
+            setIsInputError(false);
             setInputValue(value);
           }}
         />
@@ -49,7 +60,7 @@ const SearchForm = (props) => {
             minWidth="200"
             accessibilityLabel="Select Type"
             _selectedItem={{
-              bg: "teal.600",
+              bg: SELECT_BG,
               endIcon: <CheckIcon size="5" />,
             }}
             mt={1}
@@ -60,18 +71,22 @@ const SearchForm = (props) => {
             <Select.Item label="TV" value="tv" />
           </Select>
           <Button
-            onPress={() => onSubmit(type, inputValue)}
+            onPress={onPressHandler}
             startIcon={<Icon as={Ionicons} name="ios-search" />}
           >
             Search
           </Button>
         </HStack>
-        <FormControl.HelperText>
-          Please select a search type
-        </FormControl.HelperText>
-        <FormControl.ErrorMessage>
-          Movie/TV show name is required
-        </FormControl.ErrorMessage>
+
+        {isInputError ? (
+          <FormControl.ErrorMessage>
+            Movie/TV show name is required
+          </FormControl.ErrorMessage>
+        ) : (
+          <FormControl.HelperText>
+            Please select a search type
+          </FormControl.HelperText>
+        )}
       </FormControl>
     </VStack>
   );

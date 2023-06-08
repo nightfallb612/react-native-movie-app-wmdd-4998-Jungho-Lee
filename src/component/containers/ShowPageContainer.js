@@ -40,7 +40,7 @@ const ShowPageContainer = ({ route }) => {
             </Heading>
             <Box m={1}>
               <Image
-                alt="error"
+                alt={title}
                 source={{ uri: `${IMAGE_PREFIX}${videoDetail.poster_path}` }}
                 size="2xl"
               />

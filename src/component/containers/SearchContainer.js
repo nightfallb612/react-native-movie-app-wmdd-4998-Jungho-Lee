@@ -1,4 +1,4 @@
-import { Center, Container } from "native-base";
+import { Center, Container, Heading, Text, View } from "native-base";
 import SearchForm from "../forms/SearchForm";
 import { useState } from "react";
 import { getSearchResult } from "../../services/getSearchResultService";
@@ -11,34 +11,45 @@ const SearchContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [videos, setVideos] = useState([]);
   const [searchType, setSearchType] = useState(null);
+  const [searchInputError, setSearchInputError] = useState(false);
 
-  const fetchSearch = (type, inputValue) => {
-    setIsLoading(true);
+  const fetchSearch = (type, inputValue, isInputError) => {
+    setSearchInputError(isInputError);
+    console.log("isInputError: " + isInputError + " | isLoading: " + isLoading);
 
-    getSearchResult(type, inputValue).then(
-      (ResultVideos) => {
-        setVideos(ResultVideos.data.results);
-        setSearchType(type);
-        setIsLoading(false);
-      },
-      (error) => {
-        alert("Error", `Something went wrong! ${error}`);
-      }
-    );
+    if (isInputError) {
+      return;
+    } else {
+      setIsLoading(true);
+
+      getSearchResult(type, inputValue).then(
+        (ResultVideos) => {
+          setVideos(ResultVideos.data.results);
+          setSearchType(type);
+          setIsLoading(false);
+        },
+        (error) => {
+          alert("Error", `Something went wrong! ${error}`);
+        }
+      );
+    }
   };
 
   return (
-    <Container>
+    <Container maxWidth={"100%"}>
       <Center px={4}>
         <SearchForm onSubmit={fetchSearch} />
       </Center>
-      {/* {isLoading ? (
-        <Loading />
-      ) : (
-        <MovieList medias={videos} type={searchType} />
-      )} */}
       {isLoading ? (
         <Loading />
+      ) : searchInputError ? (
+        <View
+          height={"50%"}
+          width={"100%"}
+          style={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <Heading>Please initiate a search</Heading>
+        </View>
       ) : searchType === "movie" ? (
         <MovieList medias={videos} type="movie" />
       ) : searchType === "tv" ? (

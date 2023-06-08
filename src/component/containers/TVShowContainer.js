@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getTVSeries } from "../../services/getTVSeriesService";
 import Loading from "../layout/Loading";
 import TVSeriesList from "../lists/TVSeriesList";
+import { SELECT_BG } from "../../utils/colors";
 
 const TVShowContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,18 +33,18 @@ const TVShowContainer = () => {
   };
 
   return (
-    <Container>
+    <Container maxWidth={"100%"}>
       <Center width="full">
         <Box>
           <Select
             selectedValue={category}
-            minWidth="200"
+            minWidth="70%"
             accessibilityLabel="Select Category"
             _selectedItem={{
-              bg: "teal.600",
+              bg: SELECT_BG,
               endIcon: <CheckIcon size="5" />,
             }}
-            mt={1}
+            my={6}
             onValueChange={(itemValue) => handleCategoryChange(itemValue)}
           >
             <Select.Item label="Airing Today" value="airing_today" />
