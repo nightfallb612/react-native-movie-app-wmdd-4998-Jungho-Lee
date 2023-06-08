@@ -1,4 +1,4 @@
-import { Center, Container, Heading, Text, View } from "native-base";
+import { Box, Center, Container, Heading, Text, View } from "native-base";
 import SearchForm from "../forms/SearchForm";
 import { useState } from "react";
 import { getSearchResult } from "../../services/getSearchResultService";
@@ -15,7 +15,6 @@ const SearchContainer = () => {
 
   const fetchSearch = (type, inputValue, isInputError) => {
     setSearchInputError(isInputError);
-    console.log("isInputError: " + isInputError + " | isLoading: " + isLoading);
 
     if (isInputError) {
       return;
@@ -37,26 +36,24 @@ const SearchContainer = () => {
 
   return (
     <Container maxWidth={"100%"}>
-      <Center px={4}>
-        <SearchForm onSubmit={fetchSearch} />
-      </Center>
-      {isLoading ? (
-        <Loading />
-      ) : searchInputError ? (
-        <View
-          height={"50%"}
-          width={"100%"}
-          style={{ justifyContent: "center", alignItems: "center" }}
-        >
-          <Heading>Please initiate a search</Heading>
-        </View>
-      ) : searchType === "movie" ? (
-        <MovieList medias={videos} type="movie" />
-      ) : searchType === "tv" ? (
-        <TVSeriesList tvSeries={videos} type="tv" />
-      ) : (
-        <MultiTypeList medias={videos} />
-      )}
+      <Box>
+        <Center px={4}>
+          <SearchForm onSubmit={fetchSearch} />
+        </Center>
+        {isLoading ? (
+          <Loading />
+        ) : searchInputError ? (
+          <Center mt={40}>
+            <Heading>Please initiate a search</Heading>
+          </Center>
+        ) : searchType === "movie" ? (
+          <MovieList medias={videos} type="movie" />
+        ) : searchType === "tv" ? (
+          <TVSeriesList tvSeries={videos} type="tv" />
+        ) : (
+          <MultiTypeList medias={videos} />
+        )}
+      </Box>
     </Container>
   );
 };

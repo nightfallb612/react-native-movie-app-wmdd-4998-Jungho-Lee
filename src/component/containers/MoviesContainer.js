@@ -34,11 +34,11 @@ const MoviesContainer = () => {
 
   return (
     <Container maxWidth={"100%"}>
-      <Center width="full">
-        <Box>
+      <Box>
+        <Center>
           <Select
             selectedValue={category}
-            minWidth="70%"
+            minWidth="50%"
             accessibilityLabel="Select Category"
             _selectedItem={{
               bg: SELECT_BG,
@@ -52,9 +52,9 @@ const MoviesContainer = () => {
             <Select.Item label="Top Rated" value="top_rated" />
             <Select.Item label="Upcoming" value="upcoming" />
           </Select>
-        </Box>
+        </Center>
         {isLoading ? <Loading /> : <MovieList medias={movies} type="movie" />}
-      </Center>
+      </Box>
     </Container>
   );
 };

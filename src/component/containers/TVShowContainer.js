@@ -34,8 +34,8 @@ const TVShowContainer = () => {
 
   return (
     <Container maxWidth={"100%"}>
-      <Center width="full">
-        <Box>
+      <Box>
+        <Center>
           <Select
             selectedValue={category}
             minWidth="70%"
@@ -52,9 +52,13 @@ const TVShowContainer = () => {
             <Select.Item label="Popular" value="popular" />
             <Select.Item label="Top Rated" value="top_rated" />
           </Select>
-        </Box>
-      </Center>
-      {isLoading ? <Loading /> : <TVSeriesList tvSeries={tvSeries} type="tv" />}
+        </Center>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <TVSeriesList tvSeries={tvSeries} type="tv" />
+        )}
+      </Box>
     </Container>
   );
 };

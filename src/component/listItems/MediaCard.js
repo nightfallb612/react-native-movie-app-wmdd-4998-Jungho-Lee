@@ -8,20 +8,21 @@ const MediaCard = (props) => {
   return (
     <Box paddingY={2} paddingLeft={4}>
       <HStack space={1}>
-        <Box>
+        <Box maxWidth={"36%"} minWidth={"36%"}>
           <Image
             alt={title}
             source={{ uri: `${IMAGE_PREFIX}${image}` }}
             size="xl"
           />
         </Box>
-        <Box>
+        <Box maxWidth={"60%"}>
           <VStack>
             <Heading size={"xs"}>{title}</Heading>
             <Text>Popularity: {popularity}</Text>
             <Text>Release Date: {releaseDate}</Text>
             <Box p={2}>
               <Button
+                minWidth={"100%"}
                 onPress={() => {
                   navigation.navigate("detail", { id, type, title });
                 }}
